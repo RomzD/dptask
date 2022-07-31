@@ -11,11 +11,13 @@ import { bookRecuder } from './state/book/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookListEffectsService } from './shared/services/book-list-effects.service';
 import { BookEffectsService } from './shared/services/book-effects.service';
+import { BookModalComponent } from './components/book-modal/book-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent
+    BookComponent,
+    BookModalComponent
   ],
   imports: [
     BrowserModule,
