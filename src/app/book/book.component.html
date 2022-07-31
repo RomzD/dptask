@@ -1,4 +1,5 @@
 <mat-card>
+    <ng-content></ng-content>
     <table class="table table_regular" mat-table [dataSource]="dataSource">
         <ng-container class="row row_regular" *ngFor="let col of columnsToDisplay" matColumnDef="{{col}}">
             <th mat-header-cell *matHeaderCellDef> {{col}} </th>
