@@ -24,30 +24,32 @@ export const bookRecuder = createReducer(
                 book[prop] = payload[prop];
             }
         }
+        debugger
         return newState;
     }),
     on(actions.addBookSuccess, (state: Book[], action: any): Book[] => {
         const newState = cloneDeep(state);
-        newState.push(action.payload.book)
+        newState.push(action.payload.book);
         return newState;
     }),
     on(actions.removeBookSuccess, (state: Book[], action: any): Book[] => {
         const stateCopy = cloneDeep(state);
         const deletedBookId = action.payload.id;
         const indexOfDeletedBook = stateCopy.find((bk: Book) => bk.id === deletedBookId)!.id;
-        const newState =  stateCopy.slice(0, indexOfDeletedBook).concat(stateCopy.slice(deletedBookId+1));
+        const newState = stateCopy.slice(0, indexOfDeletedBook).concat(stateCopy.slice(deletedBookId + 1));
         return newState;
     }),
     on(actions.editBookSuccess, (state: Book[], action: any): Book[] => {
         const stateCopy = cloneDeep(state);
         const book = action.payload;
         const newState = stateCopy.reduce(((acc: Book[], bk: Book) => {
-            if (!(bk.id === book.id)) {
-              return acc;
+            if ((bk.id === book.id)) {
+                acc.push(book)
+                return acc;
             }
             acc.push(bk);
             return acc
-          }), []);        
+        }), []);
         return newState;
     }),
     on(actions.loadBooksSuccess, (state: Book[], action: any): Book[] => {
