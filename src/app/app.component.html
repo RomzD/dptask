@@ -1,1 +1,3 @@
-<app-book [book]=" bookMock"></app-book>
+<ng-container *ngIf="bookMock$ | async as books">
+    <app-book *ngFor="let book of books" [book]="book"></app-book>
+</ng-container>

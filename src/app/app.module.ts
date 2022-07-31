@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookComponent } from './book/book.component';
 import { MaterialModule } from './material/material.module';
 import { bookRecuder } from './state/book/book.reducer';
+import { booksRecuder } from './state/books/book-list.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffectsService } from './shared/services/book-effects.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { bookRecuder } from './state/book/book.reducer';
   imports: [
     BrowserModule,
     MaterialModule,
-    StoreModule.forRoot({book: bookRecuder}),
+    StoreModule.forRoot({ book: bookRecuder, books: booksRecuder }),
+    EffectsModule.forRoot([BookEffectsService]),
     BrowserAnimationsModule,
     AppRoutingModule
   ],
