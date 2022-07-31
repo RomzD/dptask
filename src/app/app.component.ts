@@ -14,7 +14,9 @@ import { loadBooks, addBook } from './state/book/book.actions';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  bookMock$: Observable<Book[]> = this.store.select((state: any) => state.book)
+  bookMock$: Observable<Book[]> = this.store.select((state: any) => {
+    debugger
+    return state.book})
   title = 'book-list';
 
   constructor(
@@ -27,21 +29,6 @@ export class AppComponent implements OnInit {
     this.store.dispatch(loadBooks());
   }
 
-  addBook() {
-    const book = {
-      id: Date.now(),
-      author: 'J.K.Rowling',
-      name: 'Harry Potter and the Order of the Phoenix',
-      releaseYear: 2007,
-      pageCount: 738
-    };
-    this.store.dispatch(addBook(book));
-  }
 
-  openModal(book: Book) {
-    const ref = this.dialog.open(BookModalComponent, { data: book })
-    ref.afterClosed().subscribe(data => {
-      debugger;
-    })
-  }
+
 }

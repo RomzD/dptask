@@ -12,12 +12,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { BookListEffectsService } from './shared/services/book-list-effects.service';
 import { BookEffectsService } from './shared/services/book-effects.service';
 import { BookModalComponent } from './components/book-modal/book-modal.component';
+import { ModalDirectiveDirective } from './directives/modal/modal-directive.directive';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
-    BookModalComponent
+    BookModalComponent,
+    ModalDirectiveDirective
   ],
   imports: [
     BrowserModule,

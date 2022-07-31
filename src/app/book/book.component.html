@@ -7,4 +7,6 @@
           </ng-container>
           <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     </table>
+    <button (removeEvent)="removeBook($event)"  appModalDirective [book]="book" [action]="'remove'" mat-raisedButton><mat-icon>delete</mat-icon></button>
+    <button (editEvent)="editBook($event)" appModalDirective [book]="book" [action]="'edit'"  mat-raisedButton><mat-icon>edit</mat-icon></button>
 </mat-card>

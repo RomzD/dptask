@@ -34,8 +34,6 @@ export class BookModalComponent implements OnInit {
     }
 
     book.id = this.book?.id || Date.now();
-
-
     this.dialogRef.close(book);
   }
 
@@ -51,11 +49,6 @@ export class BookModalComponent implements OnInit {
     }
     return new FormGroup(controlTemplate);
   }
-
-  onSubmit() {
-
-  }
-
 
 
   private buildFormControl(fieldType: any, value?: string | number) {

@@ -5,4 +5,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-export const matComponents = [MatCardModule, MatTableModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule];
+import {MatIconModule} from '@angular/material/icon';
+
+export const matComponents = [
+    MatCardModule,
+    MatTableModule,
+    MatDialogModule, 
+    MatFormFieldModule, 
+    ReactiveFormsModule, 
+    MatInputModule, 
+    MatButtonModule,
+    MatIconModule
+];

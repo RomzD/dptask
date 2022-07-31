@@ -38,7 +38,7 @@ export class BookService {
   editBook(book: Book): Observable<Book> {
     const books: Book[] = this.getBooksFromLS()!;
     const newBookSet = books.reduce(((acc: Book[], bk: Book) => {
-      if (!(bk.id === book.id)) {
+      if ((bk.id === book.id)) {
         acc.push(book);
         return acc;
       }
