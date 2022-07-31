@@ -9,16 +9,13 @@ import { columnsToDisplay } from './book.component.constants';
   styleUrls: ['./book.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookComponent implements OnInit {
+export class BookComponent {
   @Input() set book(bk: Book) {
     this.dataSource.data = this.buildDataSource(bk);
   }
   dataSource = new MatTableDataSource<any>([]);
   columnsToDisplay = columnsToDisplay;
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   buildDataSource(book: Book) {
     const DS = [];
