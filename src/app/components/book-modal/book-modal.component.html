@@ -1,7 +1,7 @@
 <mat-card>
     <form (ngSubmit)="submitForm()" class="form form_regular" [formGroup]="bookFormGroup">
         <mat-form-field class="form__field" *ngFor="let field of bookFormGroup.controls | keyvalue" appearance="fill">
-            <mat-label>{{field.key}}</mat-label>
+            <mat-label>{{formFieldNames[field.key]}}</mat-label>
             <input [type]="+bookMock[field.key] ? 'number': 'text'"  [formControlName]="field.key" matInput>
             
             <mat-error >this field is mandatory</mat-error>

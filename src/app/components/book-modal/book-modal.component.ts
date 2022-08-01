@@ -26,10 +26,13 @@ export class BookModalComponent implements OnInit {
   }
 
   closeForm() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   submitForm() {
+    if (!this.bookFormGroup.valid) {
+      return;
+    }
     let book: Partial<Book> = {}
     for (const field in BOOK_MOCK) {
       book[field] = this.bookFormGroup.get(field)?.value;
