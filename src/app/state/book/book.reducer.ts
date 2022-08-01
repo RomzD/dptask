@@ -33,7 +33,7 @@ export const bookRecuder = createReducer(
     }),
     on(actions.removeBookSuccess, (state: Book[], action: any): Book[] => {
         const stateCopy = cloneDeep(state);
-        const deletedBookId = action.payload.id;
+        const deletedBookId = action.payload.book.id;
         const indexOfDeletedBook = stateCopy.find((bk: Book) => bk.id === deletedBookId)!.id;
         const newState = stateCopy.slice(0, indexOfDeletedBook).concat(stateCopy.slice(deletedBookId + 1));
         return newState;
