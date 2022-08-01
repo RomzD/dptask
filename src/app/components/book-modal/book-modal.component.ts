@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BOOK_MOCK } from 'src/app/book/book.component.mock';
+import { BOOK_MOCK } from 'src/app/components/book/book.component.mock';
 import { Book } from 'src/app/model/book.interface';
 import { validators } from 'src/app/shared/validators/book-modal.validators';
+import { formFieldNames } from './book-modal.constants';
 @Component({
   selector: 'app-book-modal',
   templateUrl: './book-modal.component.html',
@@ -12,6 +13,7 @@ import { validators } from 'src/app/shared/validators/book-modal.validators';
 export class BookModalComponent implements OnInit {
   bookFormGroup!: FormGroup
   bookMock = BOOK_MOCK;
+  formFieldNames = formFieldNames;
   book?: Book
   constructor(
     public dialogRef: MatDialogRef<BookModalComponent>,
