@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './components/book/book.component';
 import { MaterialModule } from './material/material.module';
 import { bookRecuder } from './state/book/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,6 +13,7 @@ import { BookListEffectsService } from './shared/services/book-list-effects.serv
 import { BookEffectsService } from './shared/services/book-effects.service';
 import { BookModalComponent } from './components/book-modal/book-modal.component';
 import { ModalDirectiveDirective } from './directives/modal/modal-directive.directive';
+import { BookListComponent } from './components/book-list/book-list/book-list.component';
 
 
 
@@ -21,7 +22,8 @@ import { ModalDirectiveDirective } from './directives/modal/modal-directive.dire
     AppComponent,
     BookComponent,
     BookModalComponent,
-    ModalDirectiveDirective
+    ModalDirectiveDirective,
+    BookListComponent
   ],
   imports: [
     BrowserModule,

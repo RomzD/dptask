@@ -24,7 +24,6 @@ export const bookRecuder = createReducer(
                 book[prop] = payload[prop];
             }
         }
-        debugger
         return newState;
     }),
     on(actions.addBookSuccess, (state: Book[], action: any): Book[] => {

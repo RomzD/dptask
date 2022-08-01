@@ -2,62 +2,37 @@ import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/c
 import { MatDialog } from '@angular/material/dialog';;
 import { first } from 'rxjs/operators';
 import { BookModalComponent } from 'src/app/components/book-modal/book-modal.component';
+import { BookEvents } from 'src/app/model/book-events.enum';
 import { Book } from 'src/app/model/book.interface';
-
-type Action = 'remove' | 'edit' | 'add';
+import { ModalDirEvents } from 'src/app/model/modal-directive-hostlistener-keys.model';
+const removeBook = BookEvents.removeBook as const
 @Directive({
   selector: '[appModalDirective]'
 })
 export class ModalDirectiveDirective {
-  @Input() action: Action;
-  @Input() book: Book;
+  @Input() book!: Book;
   @Output() editEvent: EventEmitter<Book> = new EventEmitter<Book>();
   @Output() removeEvent: EventEmitter<Book> = new EventEmitter<Book>();
-  @Output() addEvent: EventEmitter<Book> = new EventEmitter<Book>();
-  @HostListener('click') performAction() {
-    switch (this.action) {
-      case 'edit': this.editBook()
-        break;
-      case 'remove': this.removeBook(this.book)
-        break;
-      case 'add': this.addBook(this.book)
-        break;
-      default:
-        break;
-    }
+  @HostListener(ModalDirEvents.editBook) editListener() {
+    this.performBookAction(this.book, BookEvents.editBook);
   }
+  @HostListener(ModalDirEvents.removeBook) removeListener() {
+    this.performBookAction(this.book, BookEvents.removeBook);
+  }
+
   constructor(
     private readonly dialog: MatDialog
   ) { }
 
 
-  editBook() {
-    const ref = this.dialog.open(BookModalComponent, { data: this.book });
-    ref.afterClosed().pipe(first()).subscribe((book?: Book) => {
-      if (book) {
-        this.editEvent.emit(book);
-      }
-    })
-  }
-
-  addBook(book: Book) {
+  performBookAction(book: Book, action: BookEvents) {
     const ref = this.dialog.open(BookModalComponent, { data: book });
     ref.afterClosed().pipe(first()).subscribe((book?: Book) => {
       if (book) {
-        this.addEvent.emit(book);
+        action === ModalDirEvents.editBook ? this.editEvent.emit(book) : this.removeEvent.emit(book);
       }
     })
   }
-
-  removeBook(book: Book) {
-    const ref = this.dialog.open(BookModalComponent, { data: book });
-    ref.afterClosed().pipe(first()).subscribe((book?: Book) => {
-      if (book) {
-        this.removeEvent.emit(book);
-      }
-    })
-  }
-
 
 
 }
