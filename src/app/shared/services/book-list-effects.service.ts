@@ -16,7 +16,6 @@ export class BookListEffectsService {
     ofType(BookActions.loadBooks),
     mergeMap(() => this.bookService.loadBooksFromLS().pipe(
       map((books: Book[]) => {    
-        debugger
         return { type: BookActions.loadBooksSuccess, payload: { books } };
       }),
       catchError(() => EMPTY)

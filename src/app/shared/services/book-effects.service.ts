@@ -24,7 +24,6 @@ export class BookEffectsService {
     ofType(BookActions.removeBook),
     mergeMap((book: Book) => this.bookService.removeBook(book).pipe(
       map((book: Book) => {
-        debugger
         return { type: BookActions.removeBookSuccess, payload: { book } };
       }),
       catchError(() => EMPTY)

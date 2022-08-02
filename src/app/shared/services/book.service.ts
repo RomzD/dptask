@@ -11,13 +11,11 @@ export class BookService {
   constructor() { }
 
   loadBooksFromLS(): Observable<Book[]> {
-    debugger
     const books = this.getBooksFromLS();
     return books ? of(books) : throwError(() => LOAD_BOOKS_ERR_MSG);
   }
 
   addBook(book: Book): Observable<Book> {
-    debugger
     const books: Book[] = this.getBooksFromLS() || [];
     const newBookSet: Book[] = [...books, book]
     this.writeToLocalStorage(newBookSet);
@@ -33,13 +31,11 @@ export class BookService {
       acc.push(bk);
       return acc
     }), [])
-    debugger
     this.writeToLocalStorage(newBookSet);
     return of(book)
   }
 
   editBook(book: Book): Observable<Book> {
-    debugger
     const books: Book[] = this.getBooksFromLS()!;
     const newBookSet = books.reduce(((acc: Book[], bk: Book) => {
       if ((bk.id === book.id)) {
