@@ -25,7 +25,7 @@ export const bookRecuder = createReducer(
     }),
     on(actions.editBookSuccess, (state: Book[], action: any): Book[] => {
         const stateCopy = cloneDeep(state);
-        const book = action.payload;
+        const book = action.payload.book;
         const newState = stateCopy.reduce(((acc: Book[], bk: Book) => {
             if ((bk.id === book.id)) {
                 acc.push(book)
@@ -34,6 +34,7 @@ export const bookRecuder = createReducer(
             acc.push(bk);
             return acc
         }), []);
+        debugger
         return newState;
     }),
     on(actions.loadBooksSuccess, (state: Book[], action: any): Book[] => {
