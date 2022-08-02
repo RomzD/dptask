@@ -18,7 +18,7 @@ function reversePrint(linkedList) {
         return list.next ? extractLinkedListVal(currentList, list.next) : currentList;
     }
 
-    const extractedValues = extractLinkedListVal([], someList);
+    const extractedValues = extractLinkedListVal([], linkedList);
     for (let i = extractedValues.length - 1; i >= 0; i--) {
         console.log(extractedValues[i]);
     }
