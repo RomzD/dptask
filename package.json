@@ -4,6 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "task1": "node task1.js",
+    "task2": "node task2.js",
+    "task3": "node task3.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
