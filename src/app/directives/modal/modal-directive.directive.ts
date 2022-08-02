@@ -1,11 +1,15 @@
-import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';;
+import { ComponentType } from '@angular/cdk/portal';
+import { Component, Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { BookModalComponent } from 'src/app/components/book-modal/book-modal.component';
+import { ConfirmationModalComponent } from 'src/app/components/confirmation-modal/confirmation-modal.component';
 import { BookEvents } from 'src/app/model/book-events.enum';
 import { Book } from 'src/app/model/book.interface';
 import { ModalDirEvents } from 'src/app/model/modal-directive-hostlistener-keys.model';
-const removeBook = BookEvents.removeBook as const
+import { ModalService } from 'src/app/shared/services/modal.service';
+
+const REMOVAL_CONFIRMATION_MESSAGE = 'Please, confirm book removal';
+
 @Directive({
   selector: '[appModalDirective]'
 })
@@ -14,25 +18,32 @@ export class ModalDirectiveDirective {
   @Output() editEvent: EventEmitter<Book> = new EventEmitter<Book>();
   @Output() removeEvent: EventEmitter<Book> = new EventEmitter<Book>();
   @HostListener(ModalDirEvents.editBook) editListener() {
-    this.performBookAction(this.book, BookEvents.editBook);
+    this.editBook(this.book);
   }
   @HostListener(ModalDirEvents.removeBook) removeListener() {
-    this.performBookAction(this.book, BookEvents.removeBook);
+    this.removeBook(this.book, REMOVAL_CONFIRMATION_MESSAGE);
   }
 
   constructor(
-    private readonly dialog: MatDialog
+    private readonly modalService: ModalService
   ) { }
 
 
-  performBookAction(book: Book, action: BookEvents) {
-    const ref = this.dialog.open(BookModalComponent, { data: book });
+  editBook(book: Book) {
+    const ref = this.modalService.openDailog(BookModalComponent, book);
     ref.afterClosed().pipe(first()).subscribe((book?: Book) => {
       if (book) {
-        action === ModalDirEvents.editBook ? this.editEvent.emit(book) : this.removeEvent.emit(book);
+        this.editEvent.emit(book);
       }
     })
   }
 
-
+  removeBook(book:Book, message: string) {
+    const ref = this.modalService.openDailog(ConfirmationModalComponent, message);
+    ref.afterClosed().pipe(first()).subscribe((confirmation: boolean) => {
+      if (confirmation) {
+        this.removeEvent.emit(book);
+      }
+    })
+  }
 }

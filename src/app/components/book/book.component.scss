@@ -1,0 +1,24 @@
+.table {
+    &_regular {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+.row {
+    &_regular {
+        display: flex;
+        justify-content: space-between;
+        min-width: 50%;
+    }
+}
+
+.button {
+    &__container {
+        margin: 0.5rem auto;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+}
+

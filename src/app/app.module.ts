@@ -14,6 +14,7 @@ import { BookEffectsService } from './shared/services/book-effects.service';
 import { BookModalComponent } from './components/book-modal/book-modal.component';
 import { ModalDirectiveDirective } from './directives/modal/modal-directive.directive';
 import { BookListComponent } from './components/book-list/book-list/book-list.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 
 
@@ -23,7 +24,8 @@ import { BookListComponent } from './components/book-list/book-list/book-list.co
     BookComponent,
     BookModalComponent,
     ModalDirectiveDirective,
-    BookListComponent
+    BookListComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
