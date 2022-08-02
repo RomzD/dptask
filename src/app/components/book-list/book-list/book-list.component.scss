@@ -1,0 +1,26 @@
+.book-list {
+    width: 100%;
+    margin: auto;
+    &__add-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    &__container {
+        width: 100%;
+        max-width: 900px;
+        &_justify-right {
+            justify-content: flex-end;
+            display: flex;
+        }
+    }
+    &_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    &_main {
+        margin-top: 150px;
+    }
+}

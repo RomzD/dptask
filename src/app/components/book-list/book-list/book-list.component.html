@@ -1,0 +1,10 @@
+<ng-container *ngIf="books$ | async as books">
+   <section class="book-list book-list_main book-list__container ">
+    <div class="book-list__container book-list__container_justify-right"><button (click)="addBook()" mat-raised-button>Add book</button></div>
+    <div class="book-list book-list_grid">
+        
+        <app-book (editEvent)="editBook($event)" (removeEvent)="removeBook($event)" appModalDirective [book]="book"
+            *ngFor="let book of books" [book]="book"></app-book>
+    </div>
+    </section>
+</ng-container>
