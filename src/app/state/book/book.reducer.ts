@@ -34,7 +34,6 @@ export const bookRecuder = createReducer(
             acc.push(bk);
             return acc
         }), []);
-        debugger
         return newState;
     }),
     on(actions.loadBooksSuccess, (state: Book[], action: any): Book[] => {

@@ -11,6 +11,7 @@
         max-width: 900px;
         &_justify-right {
             justify-content: flex-end;
+            margin: 0.5rem auto;
             display: flex;
         }
     }

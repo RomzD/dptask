@@ -4,9 +4,15 @@
         <ng-container class="row row_regular" *ngFor="let col of columnsToDisplay" matColumnDef="{{col}}">
             <th mat-header-cell *matHeaderCellDef> {{col}} </th>
             <td mat-cell *matCellDef="let row"> {{row[col]}} </td>
-          </ng-container>
-          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+        </ng-container>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     </table>
-    <button (click)="removeBook.emit(bookEvents.removeBook)" mat-raisedButton><mat-icon>delete</mat-icon></button>
-    <button (click)="editBook.emit(bookEvents.editBook)"   mat-raisedButton><mat-icon>edit</mat-icon></button>
+    <div class="button__container">
+        <button mat-raised-button  title="remove book" (click)="removeBook.emit(bookEvents.removeBook)" mat-raisedButton>
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-raised-button  title="edit book" (click)="editBook.emit(bookEvents.editBook)" mat-raisedButton>
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
 </mat-card>

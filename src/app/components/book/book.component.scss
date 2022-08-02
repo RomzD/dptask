@@ -12,3 +12,13 @@
         min-width: 50%;
     }
 }
+
+.button {
+    &__container {
+        margin: 0.5rem auto;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+}
+
